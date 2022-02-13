@@ -1,23 +1,17 @@
 const express = require("express");
 //this import will allows us to build schema
-
+const path = require('path');
 const { graphqlHTTP } = require("express-graphql");
 
+
+const { loadFileSync } = require('@graphql-tools/load-files');
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 
-
-
-//graph ql schema with two fields
-const schemaText = `
-  type Query {
-      products: [Product]
-      orders: [Order]
-  }
-`;
+const typesArray = loadFileSync(path.join(__dirname, '**/*.graphql');
 
 const schema = makeExecutableSchema({
-    typeDefs: [schemaText]
-})
+    typeDefs: typesArray
+});
 
 
 const root = {
