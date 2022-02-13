@@ -8,7 +8,10 @@ module.exports = {
       },
       //args is key to creating filter queries. 
       productsByPrice: (_, args) => {
-         return productsModel.getAllProductsByPrice(args.min, args.max);
+         return productsModel.getAProductsByPrice(args.min, args.max);
+      },
+      product: (_, args) => {
+        return productsModel.getAProductsById(args.id);
       }
     }
 };

@@ -1,5 +1,3 @@
-const { product } = require("puppeteer");
-
 const products = [
   {
     id: "redshoe",
@@ -23,7 +21,15 @@ function getAllProductsByPrice(min, max) {
   })
 }
 
+
+function getProductById(id) {
+  return products.find((product) => {
+    return product.id === id;
+  })
+}
+
 module.exports = {
     getAllProducts,
-    getAllProductsByPrice
+    getAllProductsByPrice,
+    getProductById,
 };
