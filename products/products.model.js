@@ -1,5 +1,3 @@
-const { product } = require("puppeteer");
-
 const products = [
   {
     id: "redshoe",
@@ -29,7 +27,7 @@ function getAllProductsByPrice(min, max) {
 function getProductById(id) {
   return products.find((product) => {
     return product.id === id;
-  })
+  });
 }
 
 function addNewProduct(id, description, price) {
@@ -44,9 +42,25 @@ function addNewProduct(id, description, price) {
    return newProduct;
 }
 
+
+function addNewProductReview(id, rating, comment) {
+  const matchedProduct = getProductById(id);
+  if (matchedProduct) {
+    const newProductReview = {
+      rating,
+      comment,
+    };
+
+    matchedProduct.reviews.push(addNewProductReview);
+
+    return newProductReview;
+  }
+}
+
 module.exports = {
     getAllProducts,
     getAllProductsByPrice,
     getProductById,
     addNewProduct,
+    addNewProductReview,
 };
